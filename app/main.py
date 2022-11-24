@@ -34,19 +34,12 @@ def get_feature(email: str, featureName: str, db: Session = Depends(get_db)):
     return response
 
 
-def set_feature_access(request: FeatureAccess):
-    if 0 == 0:
-        return status.HTTP_200_OK
-    else:
-        return status.HTTP_304_NOT_MODIFIED
-
-
 @app.post("/feature")
 def post_feature(
     body: FeatureAccess, response: Response, db: Session = Depends(get_db)
 ):
-
-    crud.create_feature_access_entry(db=db, feature_access=body)
-    response.status_code = set_feature_access(body)
+    response.status_code = crud.create_or_update_feature_access_entry(
+        db=db, feature_access=body
+    )
 
     return response
