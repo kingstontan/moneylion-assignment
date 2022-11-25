@@ -10,11 +10,5 @@ class FeatureAccess(Base):
     email = Column(String, primary_key=True)
     enable = Column(Boolean, default=True)
 
-    # TODO: properly define index
-    # __table_args__ = (
-    #     Index(
-    #         "user_permission",
-    #         "featureName",
-    #         "email",
-    #     ),
-    # )
+    # Composite unique index of featureName and email
+    __table_args__ = (Index("user_permission", "featureName", "email", unique=True),)
