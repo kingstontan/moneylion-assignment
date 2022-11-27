@@ -24,4 +24,5 @@ To be able to run this application, you should have the following installed.
 2. Run it with `docker run --name mycontainer --env-file .env -p 80:80 myimage`
 
 ## Unit Tests
-1. Run unit tests with `pytest`
+1. Install httpx with `pip install httpx`
+2. Run unit tests with `pytest`
