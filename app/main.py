@@ -26,6 +26,7 @@ def get_feature(
     if entry:
         response = FeatureAccessResponse(canAccess=entry.enable)
     else:
+        # if there is no entry with the same composite pk(featureName & email)
         response.status_code = status.HTTP_204_NO_CONTENT
     return response
 
@@ -37,5 +38,4 @@ def post_feature(
     response.status_code = crud.create_or_update_feature_access_entry(
         db=db, feature_access=body
     )
-
     return response
