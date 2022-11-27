@@ -139,6 +139,27 @@ def test_post_feature_missing_param(test_db):
     assert response.status_code == 422
 
 
+def test_post_feature_wrong_param_type(test_db):
+    # even though featureName is int & enable is str
+    # fastapi will try to convert 123 to "123", "True" to True, so it works
+    response = client.post(
+        "/feature",
+        json={"featureName": 123, "email": "abc@gmail.com", "enable": "True"},
+    )
+    assert response.status_code == 200
+
+    # however it cannot convert "random_string" to any boolean
+    response = client.post(
+        "/feature",
+        json={
+            "featureName": "123",
+            "email": "abc@gmail.com",
+            "enable": "random_string",
+        },
+    )
+    assert response.status_code == 422
+
+
 def test_get_feature_valid(test_db):
     response = client.post(
         "/feature",
