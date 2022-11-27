@@ -20,8 +20,8 @@ To be able to run this application, you should have the following installed.
 2. Start the server with `uvicorn app.main:app --reload`, optionally with explicit port e.g.`--port 8001`
 
 ### Running it with Docker locally
-1. Build it with `docker build --no-cache -t myimage .`
-2. Run it with `docker run --name mycontainer --env-file .env -p 80:80 myimage`
+1. Build it with `docker build --no-cache -t moneylion .`
+2. Run it with `docker run -p 80:80 moneylion`, this will launch the service on port 80
 
 ## Unit Tests
 1. Install httpx with `pip install httpx`
